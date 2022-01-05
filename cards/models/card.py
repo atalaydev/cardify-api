@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Card(models.Model):
@@ -15,6 +16,7 @@ class Card(models.Model):
     streak = models.IntegerField(default=0, blank=False)
     status = models.IntegerField(choices=CardStatus.choices, default=CardStatus.NEW)
     created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, blank=False, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return str(self.id)
