@@ -10,3 +10,6 @@ class CardViewSet(viewsets.ModelViewSet):
         return Card.objects \
             .filter(created_by=self.request.user) \
             .order_by('streak', 'created_at')
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
