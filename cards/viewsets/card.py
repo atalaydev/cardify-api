@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from cards.models import Card
-from cards.serializers.card import CardSerializer
+from cards.serializers import CardSerializer
 
 class CardViewSet(viewsets.ModelViewSet):
     serializer_class = CardSerializer
