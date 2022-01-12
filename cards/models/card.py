@@ -2,6 +2,8 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import User
 
+from buckets.models import Bucket
+
 
 class Card(models.Model):
     
@@ -18,6 +20,7 @@ class Card(models.Model):
         POOR = 1
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    bucket = models.ForeignKey(Bucket, on_delete=models.PROTECT)
     front = models.TextField(max_length=256, blank=False, verbose_name='Front-face')
     back = models.TextField(max_length=256, blank=False, verbose_name='Back-face')
     streak = models.IntegerField(default=0, blank=False)
