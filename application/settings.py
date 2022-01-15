@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cards',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
