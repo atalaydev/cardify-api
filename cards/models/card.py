@@ -1,11 +1,11 @@
 import uuid
 from django.db import models
-from django.contrib.auth.models import User
 
+from utils.base_model import BaseModel
 from buckets.models import Bucket
 
 
-class Card(models.Model):
+class Card(BaseModel):
     
     class CardStatus(models.IntegerChoices):
         ARCHIVED = 0
@@ -19,15 +19,13 @@ class Card(models.Model):
         FAIR = 2
         POOR = 1
 
-    pk = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    key = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     bucket = models.ForeignKey(Bucket, on_delete=models.PROTECT)
     front = models.TextField(max_length=256, blank=False, verbose_name='Front-face')
     back = models.TextField(max_length=256, blank=False, verbose_name='Back-face')
     streak = models.IntegerField(default=0, blank=False)
     status = models.IntegerField(choices=CardStatus.choices, blank=False, default=CardStatus.ACTIVE)
     confidence = models.IntegerField(choices=ConfidenceLevel.choices, blank=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, blank=False, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f'{self.pk} ({self.bucket})'
+        return f'{self.key} ({self.bucket})'
