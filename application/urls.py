@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.authtoken.views import ObtainAuthToken
 
-from .authentication.views import RegisterView
+from authentication.views import RegisterView
 from .routers import router_urls
 
 urlpatterns = [
