@@ -19,7 +19,7 @@ class Card(models.Model):
         FAIR = 2
         POOR = 1
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    pk = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     bucket = models.ForeignKey(Bucket, on_delete=models.PROTECT)
     front = models.TextField(max_length=256, blank=False, verbose_name='Front-face')
     back = models.TextField(max_length=256, blank=False, verbose_name='Back-face')
@@ -30,4 +30,4 @@ class Card(models.Model):
     created_by = models.ForeignKey(User, blank=False, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f'{self.id} ({self.bucket})'
+        return f'{self.pk} ({self.bucket})'
