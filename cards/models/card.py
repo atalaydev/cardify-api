@@ -30,4 +30,4 @@ class Card(models.Model):
     created_by = models.ForeignKey(User, blank=False, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return str(self.id)
+        return f'{self.id} ({self.bucket})'
