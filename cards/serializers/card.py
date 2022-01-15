@@ -6,5 +6,5 @@ class CardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Card
-        fields = ['id', 'bucket', 'front', 'back', 'confidence', 'streak', 'created_at']
+        fields = ['key', 'bucket', 'front', 'back', 'confidence', 'streak', 'created_at']
         read_only_fields = ['created_at']
